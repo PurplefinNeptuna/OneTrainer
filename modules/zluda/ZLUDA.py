@@ -37,8 +37,8 @@ def initialize():
         torch.backends.cuda.enable_cudnn_sdp(False)
 
     # ONNX Runtime is not supported
-    ort.capi._pybind_state.get_available_providers = lambda: [v for v in ort.get_available_providers() if v != "CUDAExecutionProvider"] # pylint: disable=protected-access
-    ort.get_available_providers = ort.capi._pybind_state.get_available_providers # pylint: disable=protected-access
+    #ort.capi._pybind_state.get_available_providers = lambda: [v for v in ort.get_available_providers() if v != "CUDAExecutionProvider"] # pylint: disable=protected-access
+    #ort.get_available_providers = ort.capi._pybind_state.get_available_providers # pylint: disable=protected-access
 
 
 def initialize_devices(config: TrainConfig):

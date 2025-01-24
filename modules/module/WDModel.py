@@ -20,7 +20,7 @@ class WDModel(BaseImageCaptionModel):
         if device.type == 'cpu':
             provider = "CPUExecutionProvider"
         else:
-            provider = "CUDAExecutionProvider" if "CUDAExecutionProvider" in onnxruntime.get_available_providers() else "CPUExecutionProvider"
+            provider = "CPUExecutionProvider"
         self.model = onnxruntime.InferenceSession(model_path, providers=[provider])
 
         label_path = huggingface_hub.hf_hub_download(

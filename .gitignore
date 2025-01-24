@@ -25,6 +25,7 @@ secrets.json
 /conda_env*
 .python-version
 *.egg-info
+/.zluda
 
 # pixi environments
 .pixi
