@@ -588,6 +588,21 @@ class TrainingTab:
                          tooltip="Rescales the noise scheduler to a zero terminal signal to noise ratio and switches the model to a v-prediction target")
         components.switch(frame, 3, 1, self.ui_state, "rescale_noise_scheduler_to_zero_terminal_snr")
 
+        # # use token downsampling
+        # components.label(frame, 4, 0, "Use Token Downsampling",
+        #                  tooltip="Use token downsampling in the UNet")
+        # components.switch(frame, 4, 1, self.ui_state, "unet.token_downsampling")
+
+        # # token downsampling max depth
+        # components.label(frame, 5, 0, "Token Downsampling Max Depth",
+        #                  tooltip="The maximum depth for token downsampling")
+        # components.entry(frame, 5, 1, self.ui_state, "unet.token_downsampling_max_depth")
+
+        # # token downsampling factor
+        # components.label(frame, 6, 0, "Token Downsampling Factor",
+        #                  tooltip="The factor for token downsampling")
+        # components.entry(frame, 6, 1, self.ui_state, "unet.token_downsampling_factor")
+
     def __create_prior_frame(self, master, row):
         frame = ctk.CTkFrame(master=master, corner_radius=5)
         frame.grid(row=row, column=0, padx=5, pady=5, sticky="nsew")

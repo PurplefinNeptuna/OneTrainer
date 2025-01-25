@@ -9,6 +9,7 @@ from modules.modelSetup.mixin.ModelSetupDiffusionMixin import ModelSetupDiffusio
 from modules.modelSetup.mixin.ModelSetupEmbeddingMixin import ModelSetupEmbeddingMixin
 from modules.modelSetup.mixin.ModelSetupNoiseMixin import ModelSetupNoiseMixin
 from modules.module.AdditionalEmbeddingWrapper import AdditionalEmbeddingWrapper
+from modules.util.SubQuadraticCrossAttnProcessor import SubQuadraticCrossAttnProcessor
 from modules.util.checkpointing_util import (
     enable_checkpointing_for_clip_encoder_layers,
     enable_checkpointing_for_stable_cascade_blocks,
@@ -51,6 +52,10 @@ class BaseWuerstchenSetup(
             for child_module in model.prior_prior.modules():
                 if isinstance(child_module, Attention):
                     child_module.set_processor(AttnProcessor())
+        elif config.attention_mechanism == AttentionMechanism.SUB_QUAD:
+            for child_module in model.prior_prior.modules():
+                if isinstance(child_module, Attention):
+                    child_module.set_processor(SubQuadraticCrossAttnProcessor())
         elif config.attention_mechanism == AttentionMechanism.XFORMERS and is_xformers_available():
             try:
                 for child_module in model.prior_prior.modules():

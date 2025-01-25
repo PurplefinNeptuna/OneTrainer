@@ -47,6 +47,8 @@ class BaseStableDiffusion3Setup(
     ):
         if config.attention_mechanism == AttentionMechanism.DEFAULT:
             model.transformer.set_attn_processor(JointAttnProcessor2_0())
+        elif config.attention_mechanism == AttentionMechanism.SUB_QUAD:
+            model.transformer.set_attn_processor(JointAttnProcessor2_0())
         elif config.attention_mechanism == AttentionMechanism.XFORMERS and is_xformers_available():
             try:
                 model.transformer.set_attn_processor(XFormersJointAttnProcessor(model.train_dtype.torch_dtype()))

@@ -181,6 +181,10 @@ class TrainModelPartConfig(BaseConfig):
     attention_mask: bool
     guidance_scale: float
 
+    # token_downsampling: bool
+    # token_downsampling_max_depth: int
+    # token_downsampling_factor: str
+
     def __init__(self, data: list[(str, Any, type, bool)]):
         super().__init__(data)
 
@@ -200,6 +204,10 @@ class TrainModelPartConfig(BaseConfig):
         data.append(("train_embedding", True, bool, False))
         data.append(("attention_mask", False, bool, False))
         data.append(("guidance_scale", 1.0, float, False))
+
+        # data.append(("token_downsampling", False, bool, False))
+        # data.append(("token_downsampling_max_depth", 0, int, False))
+        # data.append(("token_downsampling_factor", "1", str, False))
 
         return TrainModelPartConfig(data)
 
